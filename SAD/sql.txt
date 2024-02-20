@@ -1,0 +1,28 @@
+create table dim_tempo (
+id serial primary key,
+ano int
+);
+
+create table dim_local (
+id serial primary key,
+local varchar
+);
+
+create table dim_primeiro_conjugue(
+id serial primary key,
+faixa_etaria varchar,
+sexo varchar
+);
+
+
+select * from dim_tempo;
+select *from dim_conjugue;
+select * from dim_local;
+
+
+CREATE TABLE fato (id_local INT NOT NULL, id_tempo INT NOT NULL, id_conjugue INT NOT NULL,quantidade_matrimonio INT,
+FOREIGN KEY(id_local) REFERENCES dim_local(id),
+FOREIGN KEY(id_tempo) REFERENCES dim_tempo(id),
+FOREIGN KEY(id_conjugue) REFERENCES dim_conjugue(id),
+PRIMARY KEY (id_local, id_tempo, id_conjugue)
+);
